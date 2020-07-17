@@ -2,10 +2,6 @@ GET http://localhost:3333/ HTTP/1.1
 
 ###
 
-GET https://example.com/topics/1 HTTP/1.1
-
-###
-
 POST http://localhost:3333/
 content-type: application/json
 
