@@ -32,7 +32,7 @@ async function incrUrl(url) {
   return await data.incr(query);
 }
 
-exports.handler = async function handleTrack(req) {
+async function http(req) {
   let { url, title } = parseBody(req);
 
   await initUrl(url, title);
@@ -41,16 +41,15 @@ exports.handler = async function handleTrack(req) {
 
   return {
     statusCode: 201,
-    cors: true,
     headers: {
       "content-type": "application/json; charset=utf8",
-      // "Access-Control-Allow-Headers": "Content-Type",
-      // "Access-Control-Allow-Origin": "https://tafels.app",
-      // "Access-Control-Allow-Methods": "OPTIONS,POST",
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Headers":
         "Origin, X-Requested-With, Content-Type, Accept",
     },
+    cors: true,
     body: JSON.stringify({ title, url, visits }),
   };
-};
+}
+
+exports.handler = arc.http.async(http);
