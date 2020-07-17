@@ -13,3 +13,13 @@ content-type: application/json
     "title": "Home | Test  2",
     "url": "https://gist.github.com/DavidKuennen/443121e692175d6fc145e1efb0284ec9"
 }
+
+###
+
+POST https://earth-nqf-staging.begin.app/
+content-type: application/json
+
+{
+    "title": "Home | Test",
+    "url": "https://gist.github.com/DavidKuennen/443121e692175d6fc145e1efb0284ec9"
+}

@@ -44,6 +44,8 @@ exports.handler = async function handleTrack(req) {
     headers: {
       "content-type": "application/json; charset=utf8",
       "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers":
+        "Origin, X-Requested-With, Content-Type, Accept",
     },
     body: JSON.stringify({ title, url, visits }),
   };
