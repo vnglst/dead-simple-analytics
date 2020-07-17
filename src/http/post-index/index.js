@@ -41,12 +41,13 @@ exports.handler = async function handleTrack(req) {
 
   return {
     statusCode: 201,
+    cors: true,
     headers: {
       "content-type": "application/json; charset=utf8",
-      "Access-Control-Allow-Headers": "Content-Type",
-      "Access-Control-Allow-Origin": "https://tafels.app",
-      "Access-Control-Allow-Methods": "OPTIONS,POST",
-      // "Access-Control-Allow-Origin": "*",
+      // "Access-Control-Allow-Headers": "Content-Type",
+      // "Access-Control-Allow-Origin": "https://tafels.app",
+      // "Access-Control-Allow-Methods": "OPTIONS,POST",
+      "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Headers":
         "Origin, X-Requested-With, Content-Type, Accept",
     },
