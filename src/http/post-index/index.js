@@ -32,7 +32,7 @@ async function incrUrl(url) {
   return await data.incr(query);
 }
 
-exports.handler = async function http(req) {
+exports.handler = async function handleTrack(req) {
   let { url, title } = parseBody(req);
 
   await initUrl(url, title);
@@ -40,8 +40,11 @@ exports.handler = async function http(req) {
   const { visits } = await incrUrl(url, title);
 
   return {
-    cors: true,
-    type: "application/json; charset=utf8",
+    statusCode: 201,
+    headers: {
+      "content-type": "application/json; charset=utf8",
+      "Access-Control-Allow-Headers": "Content-Type",
+    },
     body: JSON.stringify({ title, url, visits }),
   };
 };
