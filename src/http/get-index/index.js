@@ -1,12 +1,12 @@
-const data = require('@begin/data');
-const Jimp = require('jimp');
+const data = require("@begin/data");
+const Jimp = require("jimp");
 
 const { format } = Intl.NumberFormat();
 
 async function initializeData(req) {
   // check if this is the first time for this domain
   const query = {
-    table: 'sites',
+    table: "sites",
     key: req.headers.Host,
     hits: 0,
   };
@@ -17,23 +17,22 @@ async function initializeData(req) {
 }
 
 function isExtraneousRequest(req) {
-  return (
-      req.path.endsWith("favicon.ico")
-  );
+  return req.path.endsWith("favicon.ico");
 }
 
 exports.handler = async function todos(req) {
-
-  if(isExtraneousRequest(req)) {
+  if (isExtraneousRequest(req)) {
     return { statusCode: 404 };
   }
 
   await initializeData(req);
-  const { hits } = await data.incr({
-    table: 'sites',
+  const res = await data.incr({
+    table: "sites",
     key: req.headers.Host,
-    prop: 'hits',
+    prop: "hits",
   });
+
+  const { hits } = res;
 
   const image = new Jimp(1000, 200, 0xffffffff);
   image.background(0xffffffff);
@@ -47,10 +46,10 @@ exports.handler = async function todos(req) {
     statusCode: 201,
     isBase64Encoded: true,
     headers: {
-      'content-type': 'image/png; charset=utf8',
-      'cache-control':
-        'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
+      "content-type": "image/png; charset=utf8",
+      "cache-control":
+        "no-cache, no-store, must-revalidate, max-age=0, s-maxage=0",
     },
-    body: buff.toString('base64'),
+    body: buff.toString("base64"),
   };
 };

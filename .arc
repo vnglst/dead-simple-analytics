@@ -5,6 +5,7 @@ bird-51a
 
 @http
 get /
+post /
 
 @tables
 data

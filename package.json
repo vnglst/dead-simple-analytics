@@ -1,7 +1,7 @@
 {
-  "name": "hit-counter",
+  "name": "dead-simple-analytics",
   "version": "0.0.3",
-  "description": "A Serverless Hit Counter",
+  "description": "Example Serverless Analytics",
   "scripts": {
     "start": "cross-env NODE_ENV=testing npx sandbox"
   },
