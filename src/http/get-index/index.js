@@ -1,55 +1,27 @@
 const data = require("@begin/data");
-const Jimp = require("jimp");
+const hasha = require("hasha");
 
-const { format } = Intl.NumberFormat();
+const TABLE = "urls";
+const URL = "http://localhost:3000/";
 
-async function initializeData(req) {
-  // check if this is the first time for this domain
+async function getHash(str) {
+  return hasha(str, { algorithm: "md5" });
+}
+
+exports.handler = async function handleTrack(req) {
   const query = {
-    table: "sites",
-    key: req.headers.Host,
-    hits: 0,
+    table: TABLE,
+    key: await getHash(URL),
   };
+
   const existing = await data.get(query);
-  if (!existing) {
-    await data.set(query);
-  }
-}
-
-function isExtraneousRequest(req) {
-  return req.path.endsWith("favicon.ico");
-}
-
-exports.handler = async function todos(req) {
-  if (isExtraneousRequest(req)) {
-    return { statusCode: 404 };
-  }
-
-  await initializeData(req);
-  const res = await data.incr({
-    table: "sites",
-    key: req.headers.Host,
-    prop: "hits",
-  });
-
-  const { hits } = res;
-
-  const image = new Jimp(1000, 200, 0xffffffff);
-  image.background(0xffffffff);
-
-  const font = await Jimp.loadFont(Jimp.FONT_SANS_64_BLACK);
-  image.print(font, 0, 0, format(hits));
-  image.autocrop();
-  const buff = await image.getBufferAsync(Jimp.MIME_PNG);
+  console.log(existing);
 
   return {
-    statusCode: 201,
-    isBase64Encoded: true,
+    statusCode: 200,
     headers: {
-      "content-type": "image/png; charset=utf8",
-      "cache-control":
-        "no-cache, no-store, must-revalidate, max-age=0, s-maxage=0",
+      "Content-Type": "application/json; charset=utf8",
     },
-    body: buff.toString("base64"),
+    body: JSON.stringify(existing),
   };
 };

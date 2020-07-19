@@ -3,6 +3,6 @@
   "dependencies": {
     "@architect/functions": "latest",
     "@begin/data": "latest",
-    "jimp": "^0.9.3"
+    "hasha": "^5.2.0"
   }
 }

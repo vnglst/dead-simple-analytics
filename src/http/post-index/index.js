@@ -1,7 +1,6 @@
 const data = require("@begin/data");
 const hasha = require("hasha");
 const parseBody = require("./parseBody");
-// let arc = require("@architect/functions");
 
 const TABLE = "urls";
 
