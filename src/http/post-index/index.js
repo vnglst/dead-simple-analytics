@@ -1,7 +1,7 @@
 const data = require("@begin/data");
 const hasha = require("hasha");
-let arc = require("@architect/functions");
-let parseBody = arc.http.helpers.bodyParser;
+const parseBody = require("./parseBody");
+// let arc = require("@architect/functions");
 
 const TABLE = "urls";
 
@@ -33,17 +33,22 @@ async function incrUrl(url) {
 }
 
 exports.handler = async function handleTrack(req) {
-  let { url, title } = parseBody(req);
+  const q = parseBody(req);
+  let url = q.dl;
+  let title = q.dt;
+
+  console.log("handleTrack -> url", url);
+  console.log("handleTrack -> title", title);
 
   await initUrl(url, title);
-
   const { visits } = await incrUrl(url, title);
 
   return {
     statusCode: 201,
     headers: {
-      "content-type": "application/json; charset=utf8",
+      "Content-Type": "application/json; charset=utf8",
       "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Content-Type",
     },
     body: JSON.stringify({ title, url, visits }),
   };
