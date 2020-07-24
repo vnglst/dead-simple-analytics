@@ -1,21 +1,17 @@
 const data = require("@begin/data");
-const hasha = require("hasha");
-
-const TABLE = "urls";
-const URL = "http://localhost:3000/";
-
-async function getHash(str) {
-  return hasha(str, { algorithm: "md5" });
-}
+const { VISITS_TABLE, getDateHash } = require("@architect/shared");
 
 exports.handler = async function handleTrack(req) {
+  const { url, date } = req.queryStringParameters;
+  const origin = new URL(url).origin;
+  const parsedDate = new Date(date);
+
   const query = {
-    table: TABLE,
-    key: await getHash(URL),
+    table: VISITS_TABLE,
+    key: await getDateHash(origin, parsedDate),
   };
 
   const existing = await data.get(query);
-  console.log(existing);
 
   return {
     statusCode: 200,

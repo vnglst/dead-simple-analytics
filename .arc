@@ -4,8 +4,8 @@ bird-51a
 @static
 
 @http
-get /
-post /
+get /track
+post /track
 
 @tables
 data

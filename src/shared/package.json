@@ -1,0 +1,6 @@
+{
+  "name": "begin-app-shared",
+  "dependencies": {
+    "hasha": "^5.2.0"
+  }
+}

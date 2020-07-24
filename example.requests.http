@@ -1,33 +1,36 @@
-GET http://localhost:3333/ HTTP/1.1
+GET http://localhost:3333/track/?url=http%3A%2F%2Flocalhost%3A3333%2F&date=25-07-2020 HTTP/1.1
 
 ###
 
-POST http://localhost:3333/
-content-type: application/json
+POST http://localhost:3333/track
+content-type: text/plain;charset=UTF-8
 
-{
-    "title": "Home | Test  2",
-    "url": "https://gist.github.com/DavidKuennen/443121e692175d6fc145e1efb0284ec9"
-}
-
-###
-
-POST https://earth-nqf-staging.begin.app/
-content-type: application/json
-
-{
-    "title": "Home | Test",
-    "url": "https://gist.github.com/DavidKuennen/443121e692175d6fc145e1efb0284ec9"
-}
-
-###
-
-POST http://localhost:3333/
-    ?v=1
+v=1
     &ds=web
     &aip=1
     &tid=UA-135954444-1
-    &cid=0.3k08ja7qn0t&t=pageview&sd=24-bits&dt=Finding%20Nora&dl=http%3A%2F%2Flocalhost%3A3000%2F&ul=nl&de=UTF-8&sr=1440x900
+    &cid=0.3k08ja7qn0t
+    &t=pageview&sd=24-bits
+    &dt=Finding%20Nora
+    &dl=https%3A%2F%2Flocalhost%3A3333%2F
+    &ul=nl
+    &de=UTF-8
+    &sr=1440x900
 
 ###
+
+POST http://localhost:3333/
+content-type: text/plain;charset=UTF-8
+
+v=1
+    &ds=web
+    &aip=1
+    &tid=UA-135954444-1
+    &cid=0.3k08ja7qn0t&t=pageview
+    &sd=24-bits
+    &dt=Finding%20Nora
+    &dl=https://finding-nora.com
+    &ul=nl
+    &de=UTF-8
+    &sr=1440x900
 

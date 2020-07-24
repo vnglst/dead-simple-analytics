@@ -1,8 +1,0 @@
-{
-  "name": "begin-app-get-index",
-  "dependencies": {
-    "@architect/functions": "latest",
-    "@begin/data": "latest",
-    "hasha": "^5.2.0"
-  }
-}
