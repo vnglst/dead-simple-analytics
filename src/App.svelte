@@ -4,7 +4,7 @@
 
   const SITES = [
     { url: window.location.origin, date: toDateInputValue(new Date()) },
-    { url: "https://finding-nora", date: toDateInputValue(new Date()) },
+    { url: "https://finding-nora.com", date: toDateInputValue(new Date()) },
     { url: "https://tafels.app", date: toDateInputValue(new Date()) },
   ];
 </script>
@@ -30,7 +30,7 @@
 </style>
 
 <main>
-  <h1>dead simple analytics</h1>
+  <h1>simple analytics</h1>
   <p>Demonstration of tracking page views using begin.app</p>
 
   {#each SITES as site}

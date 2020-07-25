@@ -1,3 +1,4 @@
+// GA compatible tracking script, source: https://minimalanalytics.com/
 export function initialize(context = window, trackingId, options = {}) {
   const history = context.history;
   const doc = document;
@@ -36,8 +37,6 @@ export function initialize(context = window, trackingId, options = {}) {
     exceptionDescription,
     exceptionFatal
   ) => {
-    const url =
-      options.serviceUrl || "https://www.google-analytics.com/collect";
     const data = serialize({
       v: "1",
       ds: "web",
@@ -74,16 +73,19 @@ export function initialize(context = window, trackingId, options = {}) {
           : undefined,
     });
 
-    if (nav.sendBeacon) {
-      console.log("sending beacon", url, data);
-      const status = nav.sendBeacon(url, data);
-      console.log("beacon send", status);
-    } else {
-      const xhr = new XMLHttpRequest();
-      xhr.open("POST", url, true);
-      console.log("sending request", url, data);
-      xhr.send(data);
-    }
+    const trackingUrls = [
+      ...(options.serviceUrls || "https://www.google-analytics.com/collect"),
+    ];
+
+    trackingUrls.forEach((url) => {
+      if (nav.sendBeacon) {
+        nav.sendBeacon(url, data);
+      } else {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.send(data);
+      }
+    });
   };
 
   const trackEvent = (category, action, label, value) =>
