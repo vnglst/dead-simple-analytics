@@ -1,5 +1,5 @@
 import App from "./App.svelte";
-import { initialize } from "./minimal-analytics";
+import { initialize } from "minimal-analytics";
 
 const app = new App({
   target: document.body,

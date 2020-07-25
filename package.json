@@ -28,5 +28,7 @@
     "tape": "^5.0.1",
     "tiny-json-http": "^7.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "minimal-analytics": "^1.0.0-0"
+  }
 }

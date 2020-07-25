@@ -1,32 +1,34 @@
 # BYO Serverless Analytics
 
+Using begin.app for analytics on personal websites.
+
 ## tracking api
 
 ### POST
 
-- X track visits of specific date + origin
-- (later: save only last 30 days ttl)
-- (later: save list of tracked origins)
+- [x] track visits of specific date + origin
+- [ ] save only last 30 days ttl
+- [ ] save list of tracked origins
 
 ### GET
 
-- X get visits of specific date + origin
+- [x] get visits of specific date + origin
 
 ## svelte app
 
-- X inputfield for origin (?origin=localhost:3000)
-- (later: style with tailwindcss)
-- (later: list of urls)
-- (later: select 7 days, 30 days)
-- X show visits per day
-- (later: unique visits)
+- [x] inputfield for origin
+- [ ] style with tailwindcss
+- [ ] list of urls
+- [ ] select 7 days, 30 days
+- [x] show visits per day
+- [ ] unique visits
 
 ## tracking js script
 
-- X using adapted minimal analytics script
-- (later: minimal analytics, byo tracking url)
-- (later: multiple tracking url, compare with analytics)
+- [x] using adapted minimal analytics script
+- [x] minimal analytics, byo tracking url
+- [x] multiple tracking url, compare with analytics
 
 ## add tracking
 
-- X add tracking to homepage
+- [x] add tracking to homepage
